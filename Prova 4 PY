@@ -1,0 +1,38 @@
+def calcular_media(notas):
+    return sum(notas) / len(notas) if notas else 0
+
+def verificar_situacao(media):
+    if media == 10:
+        return "Parabéns, sua média é 10"
+    elif media >= 7:
+        return "Aprovado"
+    else:
+        return "Reprovado"
+
+def main():
+    print("Digite suas notas (digite 'sair' para finalizar):")
+    notas = []
+
+    while True:
+        entrada = input("Nota: ")
+        if entrada.lower() == 'sair':
+            break
+        try:
+            nota = float(entrada)
+            if 0 <= nota <= 10:
+                notas.append(nota)
+            else:
+                print("Nota inválida! Digite uma nota entre 0 e 10.")
+        except ValueError:
+            print("Entrada inválida! Digite um número válido ou 'sair' para finalizar.")
+
+    if notas:
+        media = calcular_media(notas)
+        situacao = verificar_situacao(media)
+        print(f"\nMédia do aluno: {media:.2f}")
+        print(f"Situação: {situacao}")
+    else:
+        print("Nenhuma nota foi fornecida.")
+
+if __name__ == "__main__":
+    main()
